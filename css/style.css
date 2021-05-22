@@ -507,6 +507,10 @@ img {
 .about-section .tab-content {
     flex: 0 0 100%;
     max-width: 100%;
+    display: none;
+}
+.about-section .tab-content.active{
+    display: block;
 }
 .about-section .skills .skill-item {
     flex: 0 0 50%;
@@ -546,6 +550,7 @@ img {
     margin-top: -40px;
 }
 
+.about-section .education,
 .about-section .experience {
     padding-bottom: 80px;
 }
