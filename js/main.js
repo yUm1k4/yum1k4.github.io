@@ -22,7 +22,7 @@
 })();
 
 function bodyScrollingToggle() {
-    document.body.classList.toggle('stop-scrolling')
+    document.body.classList.toggle('hidden-scrolling')
 }
 
 // Portfolio filter and popup
@@ -79,12 +79,16 @@ function bodyScrollingToggle() {
             slideIndex = 0
             popupToggle()
             popupSlideshow()
-            // popupDetails()
+            popupDetails()
         }
     })
 
     closeBtn.addEventListener('click', () => {
         popupToggle()
+
+        if (projectDetailsContainer.classList.contains('active')) {
+            popupDetailsToggle()
+        }
     })
 
     function popupToggle() {
@@ -126,15 +130,41 @@ function bodyScrollingToggle() {
     })
 
     // function details
+    function popupDetails() {
+        // if 'portfolio-item-details' not exist
+        if (!portfolioItems[itemIndex].querySelector('.portfolio-item-details')) {
+            projectDetailsBtn.style.display="none"
+            return; // end function execution
+        }
+        projectDetailsBtn.style.display="block"
+        // get the project details
+        const details = portfolioItems[itemIndex].querySelector('.portfolio-item-details').innerHTML
+        popup.querySelector('.pp-project-details').innerHTML = details
+        // set the title
+        const title = portfolioItems[itemIndex].querySelector('.portfolio-item-title').innerHTML
+        popup.querySelector('.pp-title h2').innerHTML = title
+        // set the category
+        const category = portfolioItems[itemIndex].getAttribute('data-category')
+        popup.querySelector('.pp-project-category').innerHTML = category
+
+
+    }
+
     projectDetailsBtn.addEventListener('click', () => {
         popupDetailsToggle()
-    })
+    }) 
+
     function popupDetailsToggle() {
         if (projectDetailsContainer.classList.contains('active')) {
+            projectDetailsBtn.querySelector('i').classList.add('fa-plus')
+            projectDetailsBtn.querySelector('i').classList.remove('fa-minus')
+
             projectDetailsContainer.classList.remove('active')
             projectDetailsContainer.style.maxHeight = 0 + 'px'
         } else {
             projectDetailsBtn.querySelector('i').classList.remove('fa-plus')
+            projectDetailsBtn.querySelector('i').classList.add('fa-minus')
+
             projectDetailsContainer.classList.add('active')
             projectDetailsContainer.style.maxHeight = projectDetailsContainer.scrollHeight + 'px'
 
