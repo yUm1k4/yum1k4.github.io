@@ -7,7 +7,7 @@
 :root {
     --bg-black-900: #000000;
     --bg-black-100: #dddddd;
-    --bg-blac-50: #eff0f4;
+    --bg-black-50: #eff0f4;
     --bg-opacity: rgba(255, 255, 255, 0.5);
     --text-black-900: #000000;
     --text-black-700: #555555;
@@ -22,7 +22,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     overflow-x: hidden;
-    background-color: var(--bg-blac-50);
+    background-color: var(--bg-black-50);
 }
 body.hidden-scrolling {
     overflow: hidden;
@@ -94,6 +94,7 @@ img {
     width: 100%;
     height: 100%;
     transition: all 0.3s ease;
+    z-index: -1;
 }
 .hover-in-shadow:hover:after {
     box-shadow: var(--inner-shadow);
@@ -244,6 +245,9 @@ img {
     font-weight: 600;
     color: var(--skin-color);
 }
+.section.hide {
+    display: none;
+}
 /* 
     Header
 */
@@ -312,7 +316,7 @@ img {
 /* Navigation Menu */
 .nav-menu {
     position: fixed;
-    background-color: var(--bg-blac-50);
+    background-color: var(--bg-black-50);
     padding: 0 15px;
     left: 0;
     top: 0;
@@ -322,6 +326,35 @@ img {
     opacity: 0;
     visibility: hidden;
     overflow-y: auto;
+}
+.fade-out-effect {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-black-50);
+    z-index: -1;
+    visibility: hidden;
+}
+.fade-out-effect.avtive {
+    visibility: visible;
+    z-index: 1000;
+    animation: fadeOut 0.3s ease-out;
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.nav-menu.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 999;
+    transition: all 0.3s ease-in;
 }
 .nav-menu .close-nav-menu {
     height: 40px;
@@ -823,7 +856,7 @@ img {
 
 /* Portfolio popup */
 .portfolio-popup {
-    background-color: var(--bg-blac-50);
+    background-color: var(--bg-black-50);
     position: fixed;
     left: 0;
     top: 0;
@@ -1073,7 +1106,7 @@ img {
     position: absolute;
     font-size: 30px;
     color: var(--text-black-600);
-    opacity: 0.3;
+    opacity: 0.2;
 }
 .testimonial-section .testi-item i.left {
     left: 5px;
@@ -1093,6 +1126,7 @@ img {
     max-width: 70px;
     display: inline-block;
     width: 100%;
+    border-radius: 50%;
 }
 .testimonial-section .testi-item span {
     display: block;
@@ -1100,6 +1134,13 @@ img {
     font-weight: 600;
     font-size: 16px;
     color: var(--text-black-700);
+    text-transform: capitalize;
+}
+.testimonial-section .testi-item .sub-testi {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-black-600);
     text-transform: capitalize;
 }
 .testimonial-section .testi-slider-nav {
