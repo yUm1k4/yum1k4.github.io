@@ -289,7 +289,16 @@ function bodyScrollingToggle() {
     slider()
 })();
 
+// preloader
+window.addEventListener('load', () => {
+    document.querySelector('.preloader').classList.add('fade-out');
+    setTimeout(() => {
+        document.querySelector('.preloader').style.display = 'none'
+    }, 600);
+});
+
 // Hide all sections except active
+// for testing only capture all page
 (() => {
     const sections = document.querySelectorAll('.section')
     sections.forEach((section) => {
