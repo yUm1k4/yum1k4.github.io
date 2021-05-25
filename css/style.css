@@ -537,10 +537,13 @@ img {
     flex: 0 0 40%;
     max-width: 40%;
     padding: 0 15px;
+    display: grid;
+    place-items: center;
 }
 .about-section .about-img .img-box {
     padding: 15px;
     border-radius: 7px;
+    width: 70%;
 }
 .about-section .about-img .img-box img {
     width: 100%;
