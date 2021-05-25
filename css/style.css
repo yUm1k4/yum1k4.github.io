@@ -585,6 +585,7 @@ img {
     line-height: 26px;
     margin-bottom: 15px;
     color: var(--text-black-600);
+    padding-right: 50px;
 }
 .about-section .about-info span {
     font-weight: 600;

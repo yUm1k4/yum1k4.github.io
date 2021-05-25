@@ -87,4 +87,7 @@
     .home-section .home-text h2 {
         font-size: 40px;
     }
+    .about-section .about-info p {
+        padding-right: 0px;
+    }
 }
