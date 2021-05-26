@@ -60,6 +60,11 @@ body.hidden-scrolling {
 
 a {
     text-decoration: none;
+    color: var(--skin-color);
+}
+a.custom-link:hover {
+    filter: brightness(0.7);
+    transition: all 0.3s ease;
 }
 
 ul {
