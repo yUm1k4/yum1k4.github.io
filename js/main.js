@@ -297,13 +297,43 @@ window.addEventListener('load', () => {
     }, 600);
 });
 
+// Handle Email
+const submitBtn = document.querySelector('.btn-submit');
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+})
+
+function sendMail() {
+    let tempParams = {
+        from_name: document.getElementById('mailName').value,
+        subject: document.getElementById('mailSubject').value,
+        message: document.getElementById('mailMessage').value,
+        reply_to: document.getElementById('mailEmail').value
+    }
+
+    // 1. service id: contact_form
+    // 2. templae id: template_q88nw28
+    // 3. body
+    emailjs.send('contact_form', 'template_q88nw28', tempParams).then((res) => {
+        console.log(res.status, 'success message');
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
+// default from emailJs
+(function() {
+    emailjs.init("user_0hNv1IqF0wL7IM2yt76II");
+})();
+
+
 // Hide all sections except active
 // for testing only capture all page
-(() => {
-    const sections = document.querySelectorAll('.section')
-    sections.forEach((section) => {
-        if (!section.classList.contains('active')) {
-            section.classList.add('hide')
-        }
-    })
-})();
+// (() => {
+//     const sections = document.querySelectorAll('.section')
+//     sections.forEach((section) => {
+//         if (!section.classList.contains('active')) {
+//             section.classList.add('hide')
+//         }
+//     })
+// })();
