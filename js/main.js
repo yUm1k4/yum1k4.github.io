@@ -345,6 +345,7 @@ window.addEventListener('load', () => {
 // Handle Email
 const submitBtn = document.querySelector('.btn-submit');
 submitBtn.addEventListener('click', (e) => {
+    console.log('submit');
     e.preventDefault();
 })
 
@@ -356,12 +357,18 @@ function sendMail() {
         reply_to: document.getElementById('mailEmail').value
     }
 
+    if (tempParams.from_name == '' || tempParams.subject == '' || tempParams.message == '' || tempParams.reply_to == '') {
+        console.log(tempParams.from_name);
+        return alert('All input form is required')
+    }
+
     // 1. service id: contact_form
     // 2. templae id: template_q88nw28
     // 3. body
     emailjs.send('contact_form', 'template_q88nw28', tempParams).then((res) => {
         console.log(res.status, 'success message');
         alert('Thanks, message has been send!')
+        return location.reload();
     }).catch((err) => {
         console.log(err);
         alert('Oops something wrong!')
