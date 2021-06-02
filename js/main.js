@@ -1,8 +1,8 @@
 // Navigation Menu
 (() => {
     const hamburgerBtn = document.querySelector('.hamburger-btn'),
-    navMenu = document.querySelector('.nav-menu'),
-    closeNavBtn = navMenu.querySelector('.close-nav-menu');
+        navMenu = document.querySelector('.nav-menu'),
+        closeNavBtn = navMenu.querySelector('.close-nav-menu');
 
     hamburgerBtn.addEventListener('click', showNavMenu);
     closeNavBtn.addEventListener('click', hideNavMenu);
@@ -25,9 +25,54 @@
         }, 300);
     }
 
+    // A $( document ).ready() block.
+    $(document).ready(function () {
+        if (window.location.hash !== "") {
+            const hash = window.location.hash;
+
+            // deactivate existing active 'section'
+            document.querySelector('.section.active').classList.add('hide')
+            document.querySelector('.section.active').classList.remove('active')
+
+            // ? jika querselector dari hash nya null, maka kembalikan ke index.html
+            // ? jadi jika hash/crash (#) yg tidak terdaftar maka tidak akan error
+            // console.log(document.querySelector(hash));
+            if (document.querySelector(hash) == null) {
+                return window.location.href = 'index.html'
+            }
+            // active new 'section'
+            document.querySelector(hash).classList.add('active')
+            document.querySelector(hash).classList.remove('hide')
+            // deactive existing active navigation menu 'link-item'
+            navMenu.querySelector('.active').classList.add('outer-shadow', 'hover-in-shadow')
+            navMenu.querySelector('.active').classList.remove('active', 'inner-shadow')
+
+            // if clicked 'link-item' is contained withing the nav menu
+            if (navMenu.classList.contains('open')) {
+                // activate new nav menu 'link-item'
+                window.location.classList.add('active', 'inner-shadow')
+                window.location.classList.remove('outer-shadow', 'hover-in-shadow')
+                hideNavMenu()
+            } else {
+                let navItems = navMenu.querySelectorAll('.link-item')
+                navItems.forEach((item) => {
+                    if (hash === item.hash) {
+                        // active new nav menu
+                        item.classList.add('active', 'inner-shadow')
+                        item.classList.remove('outer-shadow', 'hover-in-shadow')
+                    }
+                })
+                fadeOutEffect()
+            }
+
+            // add hash (#) to url
+            window.location.hash = hash;
+        }
+    });
+
     // attach and event handler to document
     document.addEventListener('click', (event) => {
-        if(event.target.classList.contains('link-item')) {
+        if (event.target.classList.contains('link-item')) {
             // make sure event.target.hash has a value before overridding default behaviour
             if (event.target.hash !== "") {
                 // prevent default anchor click behavior
@@ -75,10 +120,10 @@
     tabsContainer = document.querySelector(".about-tabs")
 
     tabsContainer.addEventListener("click", (event) => {
-        if (event.target.classList.contains("tab-item") 
-        && !event.target.classList.contains("active")) {
+        if (event.target.classList.contains("tab-item") &&
+            !event.target.classList.contains("active")) {
             const target = event.target.getAttribute('data-target');
-            
+
             // deactive existing active 'tab-item'
             tabsContainer.querySelector(".active").classList.remove("outer-shadow", "active")
             // active new "tab-item"
@@ -99,20 +144,20 @@ function bodyScrollingToggle() {
 // Portfolio filter and popup
 (() => {
     const filterContainer = document.querySelector('.portfolio-filter'),
-    portfolioItemsContainer = document.querySelector('.portfolio-items'),
-    portfolioItems = document.querySelectorAll('.portfolio-item'),
-    popup = document.querySelector('.portfolio-popup'),
-    prevBtn = popup.querySelector('.pp-prev'),
-    nextBtn = popup.querySelector('.pp-next'),
-    closeBtn = popup.querySelector('.pp-close'),
-    projectDetailsContainer = popup.querySelector('.pp-details'),
-    projectDetailsBtn = popup.querySelector('.pp-project-details-btn');
+        portfolioItemsContainer = document.querySelector('.portfolio-items'),
+        portfolioItems = document.querySelectorAll('.portfolio-item'),
+        popup = document.querySelector('.portfolio-popup'),
+        prevBtn = popup.querySelector('.pp-prev'),
+        nextBtn = popup.querySelector('.pp-next'),
+        closeBtn = popup.querySelector('.pp-close'),
+        projectDetailsContainer = popup.querySelector('.pp-details'),
+        projectDetailsBtn = popup.querySelector('.pp-project-details-btn');
     let itemIndex, slideIndex, screenshots;
-    
+
     // filter portfolio items
     filterContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('filter-item')
-        && !event.target.classList.contains('active')) {
+        if (event.target.classList.contains('filter-item') &&
+            !event.target.classList.contains('active')) {
             // deactive existing active 'filter-item'
             filterContainer.querySelector('.active').classList.remove('outer-shadow', 'active')
             // active new 'filter-item'
@@ -140,11 +185,11 @@ function bodyScrollingToggle() {
             screenshots = screenshots.split(',')
 
             if (screenshots.length === 1) {
-                prevBtn.style.display='none'
-                nextBtn.style.display='none'
+                prevBtn.style.display = 'none'
+                nextBtn.style.display = 'none'
             } else {
-                prevBtn.style.display='block'
-                nextBtn.style.display='block'
+                prevBtn.style.display = 'block'
+                nextBtn.style.display = 'block'
             }
 
             slideIndex = 0
@@ -193,7 +238,7 @@ function bodyScrollingToggle() {
     // prev slide
     prevBtn.addEventListener('click', () => {
         if (slideIndex === 0) {
-            slideIndex = screenshots.length-1
+            slideIndex = screenshots.length - 1
         } else {
             slideIndex--
         }
@@ -204,10 +249,10 @@ function bodyScrollingToggle() {
     function popupDetails() {
         // if 'portfolio-item-details' not exist
         if (!portfolioItems[itemIndex].querySelector('.portfolio-item-details')) {
-            projectDetailsBtn.style.display="none"
+            projectDetailsBtn.style.display = "none"
             return; // end function execution
         }
-        projectDetailsBtn.style.display="block"
+        projectDetailsBtn.style.display = "block"
         // get the project details
         const details = portfolioItems[itemIndex].querySelector('.portfolio-item-details').innerHTML
         popup.querySelector('.pp-project-details').innerHTML = details
@@ -223,7 +268,7 @@ function bodyScrollingToggle() {
 
     projectDetailsBtn.addEventListener('click', () => {
         popupDetailsToggle()
-    }) 
+    })
 
     function popupDetailsToggle() {
         if (projectDetailsContainer.classList.contains('active')) {
@@ -247,11 +292,11 @@ function bodyScrollingToggle() {
 // Testimonial slider
 (() => {
     const sliderContainer = document.querySelector('.testi-slider-container'),
-    slides = sliderContainer.querySelectorAll('.testi-item'),
-    slideWidth = sliderContainer.offsetWidth,
-    prevBtn = document.querySelector('.testi-slider-nav .prev'),
-    nextBtn = document.querySelector('.testi-slider-nav .next'),
-    activeSlide = sliderContainer.querySelector('.testi-item.active');
+        slides = sliderContainer.querySelectorAll('.testi-item'),
+        slideWidth = sliderContainer.offsetWidth,
+        prevBtn = document.querySelector('.testi-slider-nav .prev'),
+        nextBtn = document.querySelector('.testi-slider-nav .next'),
+        activeSlide = sliderContainer.querySelector('.testi-item.active');
     let slideIndex = Array.from(activeSlide.parentElement.children).indexOf(activeSlide);
 
     // set width of all slides
@@ -284,7 +329,7 @@ function bodyScrollingToggle() {
         sliderContainer.querySelector('.testi-item.active').classList.remove('active')
         // activate new slide
         slides[slideIndex].classList.add('active')
-        sliderContainer.style.marginLeft = - (slideWidth * slideIndex) + 'px'
+        sliderContainer.style.marginLeft = -(slideWidth * slideIndex) + 'px'
     }
     slider()
 })();
@@ -297,13 +342,52 @@ window.addEventListener('load', () => {
     }, 600);
 });
 
+// Handle Email
+const submitBtn = document.querySelector('.btn-submit');
+submitBtn.addEventListener('click', (e) => {
+    console.log('submit');
+    e.preventDefault();
+})
+
+function sendMail() {
+    let tempParams = {
+        from_name: document.getElementById('mailName').value,
+        subject: document.getElementById('mailSubject').value,
+        message: document.getElementById('mailMessage').value,
+        reply_to: document.getElementById('mailEmail').value
+    }
+
+    if (tempParams.from_name == '' || tempParams.subject == '' || tempParams.message == '' || tempParams.reply_to == '') {
+        console.log(tempParams.from_name);
+        return alert('All input form is required')
+    }
+
+    // 1. service id: contact_form
+    // 2. templae id: template_q88nw28
+    // 3. body
+    emailjs.send('contact_form', 'template_q88nw28', tempParams).then((res) => {
+        console.log(res.status, 'success message');
+        alert('Thanks, message has been send!')
+        return location.reload();
+    }).catch((err) => {
+        console.log(err);
+        alert('Oops something wrong!')
+    })
+}
+
+// default from emailJs
+(function () {
+    emailjs.init("user_0hNv1IqF0wL7IM2yt76II");
+})();
+
+
 // Hide all sections except active
 // for testing only capture all page
-// (() => {
-//     const sections = document.querySelectorAll('.section')
-//     sections.forEach((section) => {
-//         if (!section.classList.contains('active')) {
-//             section.classList.add('hide')
-//         }
-//     })
-// })();
+(() => {
+    const sections = document.querySelectorAll('.section')
+    sections.forEach((section) => {
+        if (!section.classList.contains('active')) {
+            section.classList.add('hide')
+        }
+    })
+})();

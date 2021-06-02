@@ -60,6 +60,11 @@ body.hidden-scrolling {
 
 a {
     text-decoration: none;
+    color: var(--skin-color);
+}
+a.custom-link:hover {
+    filter: brightness(0.7);
+    transition: all 0.3s ease;
 }
 
 ul {
@@ -1278,7 +1283,7 @@ img {
     max-width: 50%;
 }
 .contact-section .input-group {
-    margin: 0 0 25px;
+    margin: 0 0 15px;
     transition: all 0.3s ease;
     border-radius: 30px;
 }
@@ -1306,4 +1311,28 @@ img {
     max-width: 100%;
     text-align: right;
     padding: 0px 15px;
+}
+
+/* Parsley */
+.error {
+    color: #ff0000;
+}
+
+.parsley-error {
+    border-color: #dc3545;
+}
+.parsley-errors-list {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+.parsley-errors-list.filled {
+    display: block;
+}
+.parsley-errors-list > li {
+    font-size: 85%;
+    list-style: none;
+    color: #dc3545;
+    width: 100%;
+    margin-left: 15px;
 }
