@@ -2,8 +2,8 @@
 Zainudin Abdullah Personal Portfolio
 
 Here is the list of its features :
-• Neomorphism Design
-• Fully Responsive Layout
+- Neomorphism Design
+- Fully Responsive Layout
 • 5 Color Skins 
 • Light/Dark
 • Fade In/Out Effect
