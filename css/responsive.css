@@ -1,5 +1,6 @@
 @media (max-width: 991px) {
     .portfolio-section .portfolio-item,
+    .mini-project-section .mini-project-item,
     .service-section .service-item {
         flex: 0 0 50%;
         max-width: 50%;
@@ -13,6 +14,9 @@
     .portfolio-popup .description,
     .portfolio-popup .info,
     .portfolio-section .portfolio-item,
+    .mini-project-section .mini-project-item,
+    .mini-project-popup .description,
+    .mini-project-popup .info,
     .service-section .service-item,
     .about-section .skills .skill-item,
     .about-section .about-info,
