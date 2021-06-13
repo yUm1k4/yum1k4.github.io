@@ -1149,6 +1149,97 @@ img {
     right: 15px;
 }
 
+/* Mini Project Section */
+.mini-project-section {
+    padding: 80px 0 80px;
+    min-height: 100vh;
+}
+.mini-project-section .mini-project-filter {
+    margin-bottom: 40px;
+}
+.mini-project-section .mini-project-filter {
+    padding: 0 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.mini-project-section .filter-item {
+    display: inline-block;
+    margin: 0 5px 10px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-black-600);
+    text-transform: capitalize;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.mini-project-section .filter-item:hover:not(.active) {
+    opacity: 0.6;
+}
+.mini-project-section .filter-item.active {
+    color: var(--skin-color);
+}
+.mini-project-section .mini-project-item {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.mini-project-section .mini-project-item.hide {
+    display: none;
+}
+.mini-project-section .mini-project-item.show {
+    display: block;
+    animation: fadeInTop 1s ease;
+}
+.mini-project-section .mini-project-item-inner {
+    padding: 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+}
+.mini-project-section .mini-project-item-img img {
+    border-radius: 7px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.mini-project-section .mini-project-item-inner:hover .mini-project-item-img img {
+    transform: translateY(-25px);
+}
+.mini-project-section .mini-project-item-img {
+    position: relative;
+}
+.mini-project-section .mini-project-item-img .view-project {
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--skin-color);
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    transform: translateY(-5px);
+    z-index: -1;
+    opacity: 1;
+}
+.mini-project-section .mini-project-item-inner:hover .view-project {
+    transform: translateY(0px);
+}
+.mini-project-section .mini-project-item-details {
+    display: none;
+}
+.mini-project-section .mini-project-item-inner p {
+    font-size: 16px;
+    margin: 10px 0px 0px;
+    color: var(--text-black-600);
+    text-transform: capitalize;
+}
+
 /* Testimonial section */
 .testimonial-section {
     padding: 80px 0 80px;
